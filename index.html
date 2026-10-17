@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="A small hello to a world of possibilities. Simple by design, open by nature.">
+  <title>Hello, world! — A beginning</title>
+  <style>
+    :root {
+      --gutter: clamp(1.25rem, 4vw, 4rem);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { margin: 0; }
+
+    .site {
+      --paper: #f5f3eb;
+      --ink: #242620;
+      --muted: #606258;
+      --line: #b9bbae;
+      --accent: #d0f45a;
+      min-height: 100svh;
+      padding: var(--gutter);
+      background: var(--paper);
+      color: var(--ink);
+      color-scheme: light;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    #theme-toggle {
+      position: absolute;
+      z-index: 2;
+      top: calc(var(--gutter) + .2rem);
+      right: var(--gutter);
+      width: 1.15rem;
+      height: 1.15rem;
+      margin: 0;
+      accent-color: #44551d;
+      cursor: pointer;
+      color-scheme: light;
+    }
+
+    #theme-toggle:checked ~ .site {
+      --paper: #22251f;
+      --ink: #f5f3eb;
+      --muted: #b9beb0;
+      --line: #62685a;
+      color-scheme: dark;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible,
+    #theme-toggle:focus-visible {
+      outline: 3px solid #71852b;
+      outline-offset: 5px;
+    }
+
+    #theme-toggle:focus-visible ~ .site .theme-label {
+      text-decoration: underline;
+      text-underline-offset: .3em;
+    }
+
+    .mono {
+      font-family: "Courier New", Courier, monospace;
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .07em;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 1.5rem;
+    }
+
+    .wordmark {
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: -.04em;
+      text-decoration: none;
+    }
+
+    .theme-label {
+      padding-right: 2rem;
+      cursor: pointer;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .theme-label .dark { display: none; }
+    #theme-toggle:checked ~ .site .light { display: none; }
+    #theme-toggle:checked ~ .site .dark { display: inline; }
+
+    main { padding-top: clamp(4rem, 10vh, 8rem); }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin: 0 0 2.5rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: .6rem;
+      height: .6rem;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(12rem, 19rem);
+      align-items: end;
+      gap: 2rem;
+      padding-bottom: clamp(3rem, 7vw, 7rem);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(5rem, 14vw, 14rem);
+      font-weight: 500;
+      letter-spacing: -.085em;
+      line-height: .88;
+    }
+
+    h1 .second-line { display: block; }
+
+    .intro {
+      max-width: 19rem;
+      padding-bottom: .25rem;
+    }
+
+    .intro p {
+      margin: 0 0 2rem;
+      font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+      line-height: 1.5;
+      letter-spacing: -.025em;
+    }
+
+    .explore {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: .9rem 1.1rem;
+      border: 1px solid var(--ink);
+      border-radius: 2rem;
+      background: var(--accent);
+      color: #242620;
+      font-size: .85rem;
+      text-decoration: none;
+      transition: transform 180ms ease;
+    }
+
+    .explore:hover { transform: translateY(-3px); }
+
+    .note {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 2rem;
+      padding: 1.75rem 0 3rem;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 2rem;
+    }
+
+    .note h2 { margin: 0; }
+
+    .note p {
+      max-width: 32rem;
+      margin: 0;
+      font-size: clamp(1.25rem, 2.5vw, 2rem);
+      line-height: 1.35;
+      letter-spacing: -.035em;
+    }
+
+    .note .aside {
+      justify-self: end;
+      color: var(--muted);
+      font-size: .75rem;
+      letter-spacing: .07em;
+      line-height: 1.6;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 2rem;
+      color: var(--muted);
+    }
+
+    footer p { margin: 0; }
+    footer a { text-underline-offset: .3em; }
+    footer a:hover { color: var(--ink); }
+
+    @media (min-width: 1100px) {
+      h1 .second-line { padding-left: .55em; }
+    }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; }
+      h1 { font-size: clamp(5rem, 21vw, 10rem); }
+      .intro { max-width: 25rem; }
+      .intro p { margin-bottom: 1.5rem; }
+      .note { grid-template-columns: 1fr; gap: 1.25rem; }
+      .note .aside { justify-self: start; }
+      footer { flex-wrap: wrap; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .site, .explore { transition: none; }
+      .explore:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="theme-toggle">
+  <div class="site" id="top">
+    <header class="header">
+      <a class="wordmark" href="#top" aria-label="Hello studio, back to top">hello®</a>
+      <label class="theme-label mono" for="theme-toggle">
+        Dark mode: <span class="light">off</span><span class="dark">on</span>
+      </label>
+    </header>
+
+    <main>
+      <p class="eyebrow mono">A small start. An open invitation.</p>
+      <div class="hero">
+        <h1>Hello, <span class="second-line">world!</span></h1>
+        <div class="intro">
+          <p>Every good thing starts with a hello. Here’s one for whatever comes next.</p>
+          <a class="explore" href="#beginning">Start here <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <section class="note" id="beginning" aria-labelledby="note-title">
+        <h2 class="mono" id="note-title">001 / The beginning</h2>
+        <p>A little curiosity.<br>A blank page.<br>A world of possibilities.</p>
+        <p class="aside mono">Less noise.<br>More room to begin.</p>
+      </section>
+    </main>
+
+    <footer class="mono">
+      <p>Made of simple things.</p>
+      <a href="#top">Back to hello ↑</a>
+    </footer>
+  </div>
+</body>
+</html>
